@@ -1,6 +1,4 @@
-using System;
-
-namespace DevOpsBrosShop.Models
+namespace DevOpsBrosShop.Models.ViewModels
 {
     public class ErrorViewModel
     {
