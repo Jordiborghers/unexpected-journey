@@ -10,19 +10,19 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- script: ls '$(Build.SourcesDirectory)\DevOpsBrosShop'
+- script: ls '$(Build.SourcesDirectory)/DevOpsBrosShop'
 - task: DotNetCoreCLI@2
   displayName: Build project
   inputs:
     command: build
     projects: 'DevOpsBrosShop.csproj'
-    workingDirectory: '$(Build.SourcesDirectory)\DevOpsBrosShop'
+    workingDirectory: '$(Build.SourcesDirectory)/DevOpsBrosShop'
     
 - task: DotNetCoreCLI@2
   displayName: Test project
   inputs:
     command: test
-    projects: '**\*.Tests.csproj'
+    projects: '**/*.Tests.csproj'
     workingDirectory: '$(Build.SourcesDirectory)'
 
 - task: PublishTestResults@2
