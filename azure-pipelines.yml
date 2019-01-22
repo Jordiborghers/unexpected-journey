@@ -14,13 +14,15 @@ steps:
   displayName: Build project
   inputs:
     command: build
-    projects: '$(Build.SourcesDirectory)\DevOpsBrosShop\DevOpsBrosShop.csproj'
+    projects: 'DevOpsBrosShop.csproj'
+    workingDirectory: '$(Build.SourcesDirectory)\DevOpsBrosShop\'
     
 - task: DotNetCoreCLI@2
   displayName: Test project
   inputs:
     command: test
-    projects: '$(Build.SourcesDirectory)\**\*.Tests.csproj'
+    projects: '**\*.Tests.csproj'
+    workingDirectory: '$(Build.SourcesDirectory)'
 
 - task: PublishTestResults@2
   displayName: Publish Test Results
