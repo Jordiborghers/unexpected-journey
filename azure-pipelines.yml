@@ -10,8 +10,6 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- script: ls '$(Build.SourcesDirectory)/DevOpsBrosShop'
-
 - task: DotNetCoreCLI@2
   displayName: Build project
   inputs:
@@ -23,3 +21,9 @@ steps:
   inputs:
     command: test
     projects: '**/*.Tests.csproj'
+
+- task: PublishBuildArtifacts@1
+  displayName: Drop artifact
+  inputs:
+    ArtifactName: drop
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
