@@ -10,13 +10,20 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: DotNetCoreCLI@2
+  displayName: Build project
+  inputs:
+    command: build
+    projects: '$(Build.SourcesDirectory)\DevOpsBrosShop\DevOpsBrosShop.csproj'
+    
+- task: DotNetCoreCLI@2
+  displayName: Test project
+  inputs:
+    command: test
+    projects: '$(Build.SourcesDirectory)\**\*.Tests.csproj'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
-- script: ls
-  displayName: 'Show repo contents'
+- task: PublishTestResults@2
+  displayName: Publish Test Results
+  inputs:
+    testResultsFormat: XUnit
+    testResultsFiles: '**/TEST-*.xml'
