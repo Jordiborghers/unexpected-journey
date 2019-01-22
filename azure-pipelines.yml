@@ -11,19 +11,18 @@ pool:
 
 steps:
 - script: ls '$(Build.SourcesDirectory)/DevOpsBrosShop'
+
 - task: DotNetCoreCLI@2
   displayName: Build project
   inputs:
     command: build
-    projects: 'DevOpsBrosShop.csproj'
-    workingDirectory: '$(Build.SourcesDirectory)/DevOpsBrosShop'
+    projects: 'DevOpsBrosShop.sln'
     
 - task: DotNetCoreCLI@2
   displayName: Test project
   inputs:
     command: test
     projects: '**/*.Tests.csproj'
-    workingDirectory: '$(Build.SourcesDirectory)'
 
 - task: PublishTestResults@2
   displayName: Publish Test Results
