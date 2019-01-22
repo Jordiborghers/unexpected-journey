@@ -15,6 +15,7 @@ steps:
   inputs:
     command: build
     projects: 'DevOpsBrosShop.sln'
+    arguments: '--output "$(Build.ArtifactStagingDirectory)"'
     
 - task: DotNetCoreCLI@2
   displayName: Test project
