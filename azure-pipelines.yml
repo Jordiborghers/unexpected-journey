@@ -27,7 +27,7 @@ steps:
   displayName: Copy CreateWebApp script
   inputs:
       OverWrite: true
-      Contents: 'CreateWebApp.sh'
+      Contents: 'CreateWebApp.cmd'
       SourceFolder: '$(Build.SourcesDirectory)'
       TargetFolder: '$(Build.ArtifactStagingDirectory)'       
 
