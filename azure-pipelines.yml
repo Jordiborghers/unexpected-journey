@@ -11,12 +11,12 @@ pool:
 
 steps:
 - task: DotNetCoreCLI@2
-  displayName: Build project
+  displayName: Publish project
   inputs:
-    command: build
+    command: publish
     projects: 'DevOpsBrosShop.sln'
-    arguments: '--output "$(Build.ArtifactStagingDirectory)"'
-    
+    arguments: '--self-contained --framework netcoreapp2.1 --runtime win10-x64 --output $(Build.ArtifactStagingDirectory)'
+
 - task: DotNetCoreCLI@2
   displayName: Test project
   inputs:
@@ -26,10 +26,10 @@ steps:
 - task: CopyFiles@2
   displayName: Copy CreateWebApp script
   inputs:
-      OverWrite: true
-      Contents: 'CreateWebApp.cmd'
-      SourceFolder: '$(Build.SourcesDirectory)'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'       
+    OverWrite: true
+    Contents: 'CreateWebApp.cmd'
+    SourceFolder: '$(Build.SourcesDirectory)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'       
 
 - task: PublishBuildArtifacts@1
   displayName: Drop artifact
